@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>ContactsWebApi.Application_</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="9.1.3" />
+    <PackageReference Include="MediatR" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ContactsWebApi.Core\ContactsWebApi.Core.csproj" />
+    <ProjectReference Include="..\ContactsWebApi.Infrastructure\ContactsWebApi.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
