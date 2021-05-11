@@ -6,6 +6,6 @@ namespace ContactsWebApi.Application_.Helpers.Interfaces
 {
     public interface ITokenValidationHelper
     {
-        public Guid ValidarUsuario(string Usertoken);
+        public bool ValidarUsuario(string Usertoken);
     }
 }

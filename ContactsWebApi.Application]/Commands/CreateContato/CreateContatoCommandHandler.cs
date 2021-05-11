@@ -29,16 +29,16 @@ namespace ContactsWebApi.Application_.Commands.CreateContato
                 return new CommandReturn(false, request.Erros(), "");
 
 
-            var iIdUsuarioValidado = _tokenValidationHelper.ValidarUsuario(request.TokenUsuario);
+            var tokenValido = _tokenValidationHelper.ValidarUsuario(request.TokenUsuario);
 
-            if(iIdUsuarioValidado == Guid.Empty)
-                return new CommandReturn(false,  "Usuário inválido");
+            if (!tokenValido)
+                return new CommandReturn(false, "Usuário inválido");
 
-            var contato = new Contato 
-            { 
-                Nome = request.Nome, 
+            var contato = new Contato
+            {
+                Nome = request.Nome,
                 Nota = request.Nota,
-                UsuarioId = iIdUsuarioValidado
+                UsuarioId = Guid.Parse(request.TokenUsuario)
             };
 
 

@@ -29,9 +29,9 @@ namespace ContactsWebApi.Application_.Query.BuscarContato
             if (!Guid.TryParse(request.ContatoId, out Guid idContato))
                 return new QueryReturn(false, "Id inválido");
 
-            var iIdUsuarioValidado = _tokenValidationHelper.ValidarUsuario(request.TokenUsuario);
+            var usuarioValido = _tokenValidationHelper.ValidarUsuario(request.TokenUsuario);
 
-            if (iIdUsuarioValidado == Guid.Empty)
+            if (!usuarioValido)
                 return new QueryReturn(false, "Usuário inválido");
 
             var contato = await _genericRepository.BuscarPorId(idContato);

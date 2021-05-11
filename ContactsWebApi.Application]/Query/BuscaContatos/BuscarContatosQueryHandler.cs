@@ -30,13 +30,13 @@ namespace ContactsWebApi.Application_.Query.BuscaContatos
             if (!request.EhValido())
                 return new QueryReturn(false, request.Erros(), "");
 
-            var iIdUsuarioValidado = _tokenValidationHelper.ValidarUsuario(request.TokenUsuario);
+            var usuarioValido = _tokenValidationHelper.ValidarUsuario(request.TokenUsuario);
 
-            if (iIdUsuarioValidado == Guid.Empty)
+            if (!usuarioValido)
                 return new QueryReturn(false, "Usuário inválido");
 
 
-            var listaContatos = await _genericRepository.Buscar(iIdUsuarioValidado);
+            var listaContatos = await _genericRepository.Buscar(Guid.Parse(request.TokenUsuario));
 
             if (listaContatos == null)
                 new QueryReturn(false, "Erro ao buscar os contatos");

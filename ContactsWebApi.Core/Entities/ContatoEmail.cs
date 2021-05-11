@@ -9,6 +9,7 @@ namespace ContactsWebApi.Core.Entities
         public string Email { get; set; }
         public Guid ContatoId { get; set; }
         public Contato Contato { get; set; }
+        
 
     }
 }

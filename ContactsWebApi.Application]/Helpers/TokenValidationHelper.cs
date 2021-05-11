@@ -13,8 +13,14 @@ namespace ContactsWebApi.Application_.Helpers
 
         public TokenValidationHelper(ContactsContext contactsContext) => _contactsContext = contactsContext;
 
-        public  Guid ValidarUsuario(string Usertoken) =>  !Guid.TryParse(Usertoken, out Guid token) || !_contactsContext.Usuarios.Any(e => e.Id == token) ?
-            Guid.Empty:  token;
+        public bool ValidarUsuario(string Usertoken)
+        {
+            var a = Guid.TryParse(Usertoken, out Guid token);
+            var b = !_contactsContext.Usuarios.Any(e => e.Id == token);
+
+                return a || b;
+        }
+            
         
     }
 }

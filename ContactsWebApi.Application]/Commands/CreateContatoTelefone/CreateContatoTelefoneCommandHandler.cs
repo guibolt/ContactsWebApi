@@ -30,9 +30,9 @@ namespace ContactsWebApi.Application_.Commands.CreateContatoTelefone
             if (!request.EhValido())
                 return new CommandReturn(false, request.Erros(), "");
 
-            var iIdUsuarioValidado = _tokenValidationHelper.ValidarUsuario(request.TokenUsuario);
+            var usuarioValido = _tokenValidationHelper.ValidarUsuario(request.TokenUsuario);
 
-            if (iIdUsuarioValidado == Guid.Empty)
+            if (!usuarioValido)
                 return new CommandReturn(false, "Usuário inválido");
 
             if (!Guid.TryParse(request.IdContato, out Guid contatoId))
